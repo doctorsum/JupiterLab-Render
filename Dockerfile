@@ -5,7 +5,20 @@ FROM archlinux:latest
 RUN pacman -Sy --noconfirm && pacman -S --noconfirm \
     python \
     python-pip
-
+RUN pacman -Sy --noconfirm \
+    tigervnc \
+    xfce4 \
+    xfce4-goodies \
+    sudo \
+    xorg-server \
+    xorg-server-xvfb \
+    supervisor \
+    git \
+    terminator \
+    vim \
+    wget \
+    tar \
+    && pacman -Scc --noconfirm
 # Set the working directory
 WORKDIR /app
 
