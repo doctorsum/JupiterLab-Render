@@ -10,7 +10,7 @@ RUN pacman -Sy --noconfirm && pacman -S --noconfirm \
 WORKDIR /app
 
 # Install JupyterLab
-RUN pip3 install jupyterlab
+RUN pip3 install jupyterlab --break-system-packages
 
 # Expose port 8080
 EXPOSE 8080
