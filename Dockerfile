@@ -1,10 +1,10 @@
 # Use the latest Ubuntu image
-FROM ubuntu:latest
+FROM archlinux:latest
 
 # Update and install required packages
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip
+RUN pacmam -Sy --noconfirm && pacman -S --noconfirm \
+    python \
+    python-pip
 
 # Set the working directory
 WORKDIR /app
