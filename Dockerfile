@@ -2,7 +2,7 @@
 FROM archlinux:latest
 
 # Update and install required packages
-RUN pacmam -Sy --noconfirm && pacman -S --noconfirm \
+RUN pacman -Sy --noconfirm && pacman -S --noconfirm \
     python \
     python-pip
 
