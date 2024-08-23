@@ -34,12 +34,23 @@ RUN pacman -S --noconfirm go
 WORKDIR /app/yay
 RUN sudo -u newuser makepkg -si --noconfirm
 RUN sudo -u newuser yay -S google-chrome --noconfirm
-RUN pacman -Sy --noconfirm base-devel && \
-    sudo -u newuser bash -c "yay -G chrome-remote-desktop && \
-    cd chrome-remote-desktop && \
-    sed -i '/source=/d' PKGBUILD && \ 
-    echo 'source=(\"https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb\")' >> PKGBUILD && \
-    makepkg -si --skipchecksums --noconfirm"
+RUN pacman -Sy --noconfirm wget base-devel
+
+# تحميل ملف chrome-remote-desktop
+RUN wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb -O /tmp/chrome-remote-desktop.deb
+
+# تثبيت ملف .deb باستخدام ar و tar
+RUN pacman -Sy --noconfirm ar tar && \
+    mkdir /tmp/chrome-remote-desktop && \
+    cd /tmp/chrome-remote-desktop && \
+    ar x /tmp/chrome-remote-desktop.deb && \
+    tar -xvf data.tar.xz && \
+    pacman -U --noconfirm *.pkg.tar.zst
+
+# تنظيف الملفات المؤقتة
+RUN rm -rf /tmp/chrome-remote-desktop /tmp/chrome-remote-desktop.deb
+
+# إعداد البيئة أو أي خطوات إضافية
 # Set the working directory
 WORKDIR /app
 
