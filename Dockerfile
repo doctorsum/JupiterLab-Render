@@ -10,6 +10,7 @@ RUN pacman -Sy --noconfirm \
     xfce4 \
     xfce4-goodies \
     sudo \
+    make \
     xorg-server \
     base-devel \
     xorg-server-xvfb \
