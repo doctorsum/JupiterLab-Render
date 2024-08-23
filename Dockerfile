@@ -33,8 +33,8 @@ RUN sudo chown -R newuser /app/yay
 RUN pacman -S --noconfirm go
 WORKDIR /app/yay
 RUN sudo -u newuser makepkg -si --noconfirm
-RUN yay -S google-chrome
-RUN yay -S chrome-remote-desktop
+RUN sudo -u newuser yay -S google-chrome --noconfirm
+RUN sudo -u newuser yay -S chrome-remote-desktop --noconfirm
 # Set the working directory
 WORKDIR /app
 
