@@ -11,6 +11,7 @@ RUN pacman -Sy --noconfirm \
     xfce4-goodies \
     sudo \
     xorg-server \
+    base-devel \
     xorg-server-xvfb \
     supervisor \
     git \
