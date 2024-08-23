@@ -23,6 +23,7 @@ RUN pacman -Sy --noconfirm \
     && pacman -Scc --noconfirm
 RUN cd /tmp
 RUN echo "%wheel ALL=(ALL:ALL) ALL" | sudo tee -a /etc/sudoers
+RUN echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
 RUN sudo useradd -m newuser
 RUN sudo usermod -aG wheel newuser
 RUN mkdir /app
