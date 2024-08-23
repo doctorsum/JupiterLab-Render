@@ -37,7 +37,8 @@ RUN sudo -u newuser yay -S google-chrome --noconfirm
 RUN pacman -Sy --noconfirm base-devel && \
     sudo -u newuser bash -c "yay -G chrome-remote-desktop && \
     cd chrome-remote-desktop && \
-    sed -i 's|https://dl.google.com/linux/chrome-remote-desktop/deb/pool/main/c/chrome-remote-desktop/chrome-remote-desktop_127.0.6533.8_amd64.deb|https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb|' PKGBUILD && \
+    sed -i '/source=/d' PKGBUILD && \ 
+    echo 'source=(\"https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb\")' >> PKGBUILD && \
     makepkg -si --skipchecksums --noconfirm"
 # Set the working directory
 WORKDIR /app
