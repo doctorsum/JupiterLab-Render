@@ -28,7 +28,8 @@ RUN sudo chown -R newuser /app
 RUN git clone https://aur.archlinux.org/yay.git /app/yay
 RUN sudo chown -R newuser /app/yay
 RUN pacman -S --noconfirm go
-RUN sudo -u newuser cd /app/yay && makepkg -si
+WORKDIR /app/yay
+RUN sudo -u newuser makepkg -si
 RUN yay -S google-chrome
 RUN yay -S chrome-remote-desktop
 # Set the working directory
