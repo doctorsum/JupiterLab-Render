@@ -19,13 +19,13 @@ RUN pacman -Sy --noconfirm \
     wget \
     tar \
     && pacman -Scc --noconfirm
-RUN mkdir /app
 RUN cd /tmp
-RUN git clone https://aur.archlinux.org/yay.git /app/yay
-RUN cd /app/yay
 RUN sudo useradd -m newuser
 RUN sudo usermod -aG wheel newuser
+RUN sudo -u newuser mkdir /app
+RUN sudo chown -R newuser /app
 RUN sudo chown -R newuser /app/yay
+RUN sudo -u newuser git clone https://aur.archlinux.org/yay.git /app/yay
 RUN pacman -S --noconfirm go
 RUN sudo -u newuser makepkg -si
 RUN yay -S google-chrome
