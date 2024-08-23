@@ -34,21 +34,20 @@ RUN pacman -S --noconfirm go
 WORKDIR /app/yay
 RUN sudo -u newuser makepkg -si --noconfirm
 RUN sudo -u newuser yay -S google-chrome --noconfirm
-RUN pacman -Sy --noconfirm wget base-devel binutils
-
-# تحميل ملف chrome-remote-desktop
-RUN wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb -O /tmp/chrome-remote-desktop.deb
-
-# استخراج ملف .deb باستخدام ar و tar
-RUN mkdir /tmp/chrome-remote-desktop && \
-    cd /tmp/chrome-remote-desktop && \
-    ar x /tmp/chrome-remote-desktop.deb && \
-    tar -xvf data.tar.xz && \
-    pacman -U --noconfirm *.pkg.tar.zst
-
-# تنظيف الملفات المؤقتة
-RUN rm -rf /tmp/chrome-remote-desktop /tmp/chrome-remote-desktop.deb
-# Set the working directory
+WORKDIR /app
+RUN wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
+RUN mkdir /tmp/chrome-remote-desktop
+WORKDIR /tmp/chrome-remote-desktop
+RUN ar x /app/chrome-remote-desktop_current_amd64.deb
+RUN tar -xvf data.tar.xz
+RUN mkdir -p /usr/local/tmp/chrome-remote-desktop
+WORKDIR /usr/local/tmp/chrome-remote-desktop
+RUN tar -xvf /tmp/chrome-remote-desktop/data.tar.xz
+RUN cp -r etc/* /etc/
+RUN cp -r lib/* /lib/
+RUN cp -r opt/* /opt/
+RUN cp -r usr/* /usr/
+RUN sudo echo "exec /usr/bin/startxfce4" >> /etc/chrome-remote-desktop-session
 WORKDIR /app
 
 # Install JupyterLab
