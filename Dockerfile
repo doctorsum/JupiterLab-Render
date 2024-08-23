@@ -20,6 +20,7 @@ RUN pacman -Sy --noconfirm \
     tar \
     && pacman -Scc --noconfirm
 RUN cd /tmp
+RUN echo "%wheel ALL=(ALL:ALL) ALL" | sudo tee -a /etc/sudoers
 RUN sudo useradd -m newuser
 RUN sudo usermod -aG wheel newuser
 RUN sudo -u newuser mkdir /app
