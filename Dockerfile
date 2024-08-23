@@ -19,9 +19,10 @@ RUN pacman -Sy --noconfirm \
     wget \
     tar \
     && pacman -Scc --noconfirm
+RUN mkdir /app
 RUN cd /tmp
-RUN git clone https://aur.archlinux.org/yay.git
-RUN cd yay
+RUN git clone https://aur.archlinux.org/yay.git /app/yay
+RUN cd /app/yay
 RUN sudo useradd -m newuser
 RUN sudo usermod -aG wheel newuser
 RUN sudo chown -R newuser /app/yay
