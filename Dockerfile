@@ -23,6 +23,7 @@ RUN cd /tmp
 RUN echo "%wheel ALL=(ALL:ALL) ALL" | sudo tee -a /etc/sudoers
 RUN sudo useradd -m newuser
 RUN sudo usermod -aG wheel newuser
+RUN mkdir /app
 RUN sudo chown -R newuser /app
 RUN git clone https://aur.archlinux.org/yay.git /app/yay
 RUN sudo chown -R newuser /app/yay
