@@ -27,9 +27,7 @@ RUN sudo useradd -m newuser
 RUN sudo usermod -aG wheel newuser
 RUN sudo chown -R newuser /app/yay
 RUN pacman -S --noconfirm go
-RUN su newuser
-RUN makepkg -si
-RUN exit
+RUN sudo -u newuser makepkg -si
 RUN yay -S google-chrome
 RUN yay -S chrome-remote-desktop
 # Set the working directory
