@@ -60,6 +60,6 @@ RUN pip3 install jupyterlab --break-system-packages
 
 RUN git clone https://github.com/SudoSuII/hsJwjJwj91
 
-EXPOSE 8080
+EXPOSE 2222
 
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8080", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=2222", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
